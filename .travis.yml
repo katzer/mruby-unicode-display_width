@@ -21,7 +21,13 @@
 # SOFTWARE.
 
 language: c
+
 compiler:
 - gcc
+
+env:
+- MRUBY_VERSION=1.2.0
+- MRUBY_VERSION=head
+
 script:
 - rake test

@@ -20,10 +20,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-MRUBY_CONFIG = File.expand_path(ENV['MRUBY_CONFIG'] || 'build_config.rb')
+MRUBY_CONFIG  = File.expand_path(ENV['MRUBY_CONFIG'] || 'build_config.rb')
+MRUBY_VERSION = ENV['MRUBY_VERSION'] || 'head'
 
 file :mruby do
-  sh 'git clone --depth 1 git://github.com/mruby/mruby.git'
+  if MRUBY_VERSION == 'head'
+    sh 'git clone --depth 1 git://github.com/mruby/mruby.git'
+  else
+    sh "curl -L --fail --retry 3 --retry-delay 1 https://github.com/mruby/mruby/archive/#{MRUBY_VERSION}.tar.gz -s -o - | tar zxf -"
+    FileUtils.mv("mruby-#{MRUBY_VERSION}", 'mruby')
+  end
 end
 
 desc 'compile binary'
