@@ -34,7 +34,7 @@ static mrb_value
 mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
 {
   mrb_value obj;
-  char *old_locale, *saved_locale;
+  char *old_locale, *saved_locale, *str;
 
   mrb_get_args(mrb, "S", &obj);
 
@@ -42,13 +42,14 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
   saved_locale = strdup (old_locale);
   setlocale(LC_CTYPE, "en_US.UTF-8");
 
-  char *str   = RSTRING_PTR(obj);
+  str         = RSTRING_PTR(obj);
   size_t wlen = mbstowcs(NULL, str, 0);
 
   wchar_t wstr[wlen + 1];
   mbstowcs(wstr, str, wlen);
 
-  int width = mk_wcswidth(wstr, wlen);
+  int width;
+  width = mk_wcswidth(wstr, wlen);
 
   setlocale (LC_CTYPE, saved_locale);
   free (saved_locale);
