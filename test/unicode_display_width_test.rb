@@ -39,7 +39,7 @@ assert 'special characters' do
   assert_equal 0, "\0".display_width
   assert_equal 0, "\x05".display_width
   assert_equal 0, "\a".display_width
-  # assert_equal 3, "aaaa\b".display_width TODO: 3 != 4
+  # assert_equal 3, "aaaa\b".display_width # TODO: 3 != 4
   assert_equal 0, "\b".display_width
   assert_equal 0, "\n".display_width
   assert_equal 0, "\v".display_width
