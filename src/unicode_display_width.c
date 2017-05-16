@@ -45,7 +45,7 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
   saved_locale = strdup(old_locale);
 
   // TODO: Windows has no unicode locales :´(
-  setlocale(LC_CTYPE, "UTF-8");
+  setlocale(LC_CTYPE, "en_US.UTF-8");
 
   str  = RSTRING_PTR(obj);
   wlen = mbstowcs(NULL, str, 0);
