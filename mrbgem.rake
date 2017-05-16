@@ -23,4 +23,6 @@
 MRuby::Gem::Specification.new('mruby-unicode-display_width') do |spec|
   spec.license = 'MIT'
   spec.authors = 'Sebastian Katzer, appPlant GmbH'
+
+  spec.add_test_dependency 'mruby-print', core: 'mruby-print'
 end
