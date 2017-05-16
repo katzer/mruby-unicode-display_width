@@ -35,24 +35,27 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
 {
   mrb_value obj;
   char *old_locale, *saved_locale, *str;
+  int width;
+  size_t wlen;
+  wchar_t *wstr;
 
   mrb_get_args(mrb, "S", &obj);
 
-  old_locale   = setlocale (LC_CTYPE, NULL);
-  saved_locale = strdup (old_locale);
+  old_locale   = setlocale(LC_CTYPE, NULL);
+  saved_locale = strdup(old_locale);
   setlocale(LC_CTYPE, "en_US.UTF-8");
 
-  str         = RSTRING_PTR(obj);
-  size_t wlen = mbstowcs(NULL, str, 0);
+  str  = RSTRING_PTR(obj);
+  wlen = mbstowcs(NULL, str, 0);
 
-  wchar_t wstr[wlen + 1];
+  wstr = (wchar_t *)malloc(sizeof(wchar_t) * (wlen + 1));
   mbstowcs(wstr, str, wlen);
 
-  int width;
   width = mk_wcswidth(wstr, wlen);
 
   setlocale (LC_CTYPE, saved_locale);
   free (saved_locale);
+  free(wstr);
 
   return mrb_fixnum_value(width);
 }
