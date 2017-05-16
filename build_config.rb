@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 MRuby::Build.new do |conf|
-  toolchain :gcc
+  toolchain ENV.fetch('CC', :gcc)
 
   conf.enable_debug
   conf.enable_test
