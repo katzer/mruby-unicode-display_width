@@ -42,6 +42,7 @@ environment:
 matrix:
   allow_failures:
   - MRUBY_VERSION: head
+  - COMPILER: C:\MinGW
 
 init:
 - git config --global core.autocrlf input
