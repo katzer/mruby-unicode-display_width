@@ -1,15 +1,17 @@
 # MIT License
 #
+# Copyright (c) 2017 Sebastian Katzer
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,38 +22,38 @@
 
 version: "{build}"
 
-image:
-- Visual Studio 2015
-
 environment:
   global:
-    VCVARSALL: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat
-    CC: gcc
+    TOOLCHAIN: gcc
   matrix:
-  - MRUBY_VERSION: 1.2.0
-    COMPILER: C:\MinGW # MinGW 32-bit 5.3.0
+  - MRUBY_VERSION: 1.3.0
+    COMPILER: C:\MinGW # MinGW 5.3.0
   - MRUBY_VERSION: head
+    COMPILER: C:\MinGW
+  - MRUBY_VERSION: 1.3.0
     COMPILER: C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0 # MinGW-w64 5.3.0
-  - MRUBY_VERSION: 1.2.0
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC # Visual Studio 2015
-    CC: visualcpp
+  - MRUBY_VERSION: head
+    COMPILER: C:\mingw-w64\i686-5.3.0-posix-dwarf-rt_v4-rev0
+  - MRUBY_VERSION: 1.3.0
+    COMPILER: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1 # MinGW-w64 6.3.0
+  - MRUBY_VERSION: head
+    COMPILER: C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1
 
 matrix:
   allow_failures:
   - MRUBY_VERSION: head
-  exclude:
-  - CC: visualcpp
 
 init:
-- CALL "%VCVARSALL%" amd64
-- SET PATH=%COMPILER%\bin;%PATH%
-- SET PATH=C:\Ruby23-x64\bin;%PATH%
-- SET PATH=C:\cygwin\bin;%PATH%
+- git config --global core.autocrlf input
+- reg add "HKLM\SYSTEM\CurrentControlSet\Control\Windows" /f /v ErrorMode /d 2
+- reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v DontShowUI /d 1
+- SET PATH=C:\Windows\system32;C:\Windows;C:\Program Files\Git\cmd;%PATH%
+- SET PATH=%COMPILER%\bin;C:\Ruby24-x64\bin;%PATH%;C:\cygwin\bin;
 - gcc --version
+- ruby --version
 
 build_script:
 - rake compile
 
 test_script:
 - rake test
-
