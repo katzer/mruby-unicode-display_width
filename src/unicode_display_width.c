@@ -53,7 +53,6 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
   if (wlen == (size_t)-1) {
     setlocale(LC_CTYPE, saved_locale);
     free(saved_locale);
-    free(wstr);
 
     mrb_raisef(mrb, E_RUNTIME_ERROR, "failed to convert string to wides: %S", mrb_inspect(mrb, obj));
   }
