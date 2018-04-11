@@ -55,8 +55,8 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
 
   width = mk_wcswidth(wstr, wlen);
 
-  setlocale (LC_CTYPE, saved_locale);
-  free (saved_locale);
+  setlocale(LC_CTYPE, saved_locale);
+  free(saved_locale);
   free(wstr);
 
   return mrb_fixnum_value(width);
