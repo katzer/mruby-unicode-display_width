@@ -50,6 +50,13 @@ mrb_unicode_display_width(mrb_state *mrb, mrb_value self)
   str  = RSTRING_PTR(obj);
   wlen = mbstowcs(NULL, str, 0);
 
+  if (wlen == (size_t)-1) {
+    setlocale(LC_CTYPE, saved_locale);
+    free(saved_locale);
+
+    mrb_raisef(mrb, E_RUNTIME_ERROR, "failed to convert string to wides: %S", mrb_inspect(mrb, obj));
+  }
+
   wstr = (wchar_t *)malloc(sizeof(wchar_t) * (wlen + 1));
   mbstowcs(wstr, str, wlen);
 
