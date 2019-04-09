@@ -1,4 +1,4 @@
-# Unicode::DisplayWidth ___for mruby!___ <br> [![Build Status](https://travis-ci.org/appPlant/mruby-unicode-display_width.svg?branch=master)](https://travis-ci.org/appPlant/mruby-unicode-display_width) [![Build status](https://ci.appveyor.com/api/projects/status/gyyr55n46at2regc/branch/master?svg=true)](https://ci.appveyor.com/project/katzer/mruby-unicode-display-width/branch/master)
+# Unicode::DisplayWidth ___for mruby!___ <br> [![Build Status](https://travis-ci.com/appPlant/mruby-unicode-display_width.svg?branch=master)](https://travis-ci.com/appPlant/mruby-unicode-display_width) [![Build status](https://ci.appveyor.com/api/projects/status/gyyr55n46at2regc/branch/master?svg=true)](https://ci.appveyor.com/project/katzer/mruby-unicode-display-width/branch/master)
 
 Determines the monospace display width of a string in Ruby. Implementation inspired by [unicode-display_width][unicode-display_width] and based on http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c from the University of Cambridge.
 
@@ -70,7 +70,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/apppla
 
 The gem is available as open source under the terms of the [MIT License][license].
 
-Made with :yum: from Leipzig
+Made with :yum: in Leipzig
 
 © 2017 [appPlant GmbH][appplant]
 
