@@ -20,23 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-version: "{build}"
+image: Visual Studio 2017
 
 environment:
   global:
+    COMPILER: C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64
     TOOLCHAIN: gcc
   matrix:
-  - MRUBY_VERSION: 1.4.0
+  - MRUBY_VERSION: stable
   - MRUBY_VERSION: head
-  - COMPILER: C:\MinGW
 
 matrix:
   allow_failures:
   - MRUBY_VERSION: head
-  - COMPILER: C:\MinGW
 
 init:
-- SET PATH=%COMPILER%\bin;C:\Ruby25-x64\bin;%PATH%;C:\cygwin64\bin
+- SET PATH=%COMPILER%\bin;C:\Ruby26-x64\bin;%PATH%;C:\cygwin64\bin
 - gcc --version
 
 build_script:
