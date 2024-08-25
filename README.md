@@ -42,7 +42,7 @@ With String Extension:
 
 Clone the repo:
     
-    $ git clone https://github.com/appplant/mruby-unicode-display_width.git && cd mruby-unicode-display_width/
+    $ git clone https://github.com/katzer/mruby-unicode-display_width.git && cd mruby-unicode-display_width/
 
 Compile the source:
 
@@ -54,7 +54,7 @@ Run the tests:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/appplant/mruby-unicode-display_width.
+Bug reports and pull requests are welcome on GitHub at https://github.com/katzer/mruby-unicode-display_width.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -62,18 +62,13 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/apppla
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Authors
-
-- Sebastián Katzer, Fa. appPlant GmbH
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License][license].
 
 Made with :yum: in Leipzig
 
-© 2017 [appPlant GmbH][appplant]
+© 2017 Sebastián Katzer
 
 [unicode-display_width]: https://github.com/janlelis/unicode-display_width
 [license]: http://opensource.org/licenses/MIT
-[appplant]: www.appplant.de
